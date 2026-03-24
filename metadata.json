@@ -1,0 +1,5 @@
+{
+  "name": "계모임 일정 기록소",
+  "description": "계모임의 과거 일정과 장소를 기록하고 확인하는 웹 애플리케이션입니다.",
+  "requestFramePermissions": []
+}
