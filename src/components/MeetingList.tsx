@@ -46,11 +46,13 @@ export function MeetingList() {
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-12 lg:p-16">
       <header className="mb-16 text-center pt-8">
-        <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white border border-stone-200 rounded-full shadow-sm mb-8 hover:shadow-md transition-shadow cursor-default">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span className="text-sm font-medium text-stone-600 tracking-wide">
-            오늘: {formattedDate} ({dayName})
-          </span>
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white border border-stone-200 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-default">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <span className="text-sm font-medium text-stone-600 tracking-wide">
+              오늘: {formattedDate} ({dayName})
+            </span>
+          </div>
         </div>
 
         <h1 className="relative inline-block font-serif text-5xl md:text-6xl font-bold tracking-tight mb-6 drop-shadow-md cursor-default">
