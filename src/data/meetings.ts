@@ -122,7 +122,7 @@ export const meetings: Meeting[] = [
     "end_date": "2020-12-06",
     "quarter": "Q4",
     "host": "강준호",
-    "status": "부분확정",
+    "status": "완료",
     "area": "부산",
     "schedule": [
       {
@@ -399,7 +399,7 @@ export const meetings: Meeting[] = [
     "date": "2023-03-12",
     "quarter": "Q1",
     "host": "강지혜",
-    "status": "부분확정",
+    "status": "완료",
     "area": "거제",
     "schedule": [
       {
@@ -432,7 +432,7 @@ export const meetings: Meeting[] = [
     "date": "2023-05-14",
     "quarter": "Q2",
     "host": "강준호",
-    "status": "부분확정",
+    "status": "완료",
     "area": "부산 경성대 일대",
     "schedule": [
       {
@@ -523,7 +523,7 @@ export const meetings: Meeting[] = [
     "date": "2023-11-12",
     "quarter": "Q4",
     "host": "박대근",
-    "status": "부분확정",
+    "status": "완료",
     "area": "울산",
     "schedule": [
       {
@@ -698,7 +698,7 @@ export const meetings: Meeting[] = [
     "end_date": "2024-10-13",
     "quarter": "Q4",
     "host": "박대근",
-    "status": "부분확정",
+    "status": "완료",
     "area": "제주",
     "schedule": [
       {
@@ -832,7 +832,7 @@ export const meetings: Meeting[] = [
   {
     "date": "2025-08-23",
     "end_date": "2025-08-24",
-    "quarter": "Q3/Q4 성격의 1박2일",
+    "quarter": "Q3",
     "host": "김형곤",
     "status": "완료",
     "area": "부산",
@@ -954,7 +954,7 @@ export const meetings: Meeting[] = [
     "date": "2026-03-29",
     "quarter": "Q1",
     "host": "강지혜",
-    "status": "완료",
+    "status": "예정",
     "area": "거제",
     "schedule": [
       {

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { meetings } from '../data/meetings';
 import { MeetingCard } from './MeetingCard';
@@ -6,6 +6,14 @@ import { MeetingCard } from './MeetingCard';
 export function MeetingList() {
   const [selectedYear, setSelectedYear] = useState('전체보기');
   const [selectedQuarter, setSelectedQuarter] = useState('전체보기');
+  const [showGold, setShowGold] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowGold(false);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const sortedMeetings = useMemo(() => {
     return [...meetings].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -28,25 +36,37 @@ export function MeetingList() {
     });
   }, [sortedMeetings, selectedYear, selectedQuarter]);
 
+  const today = new Date();
+  const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  const dayName = days[today.getDay()];
+
+  const titleText = "계모임 일정 기록소";
+
   return (
     <div className="max-w-4xl mx-auto p-6 md:p-12 lg:p-16">
       <header className="mb-16 text-center pt-8">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-serif text-5xl md:text-6xl font-medium tracking-tight mb-4 text-stone-800"
-        >
-          계모임 일정 기록소
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-stone-500 tracking-[0.2em] uppercase text-xs md:text-sm font-medium"
-        >
+        <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white border border-stone-200 rounded-full shadow-sm mb-8 hover:shadow-md transition-shadow cursor-default">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span className="text-sm font-medium text-stone-600 tracking-wide">
+            오늘: {formattedDate} ({dayName})
+          </span>
+        </div>
+
+        <h1 className="relative inline-block font-serif text-5xl md:text-6xl font-bold tracking-tight mb-6 drop-shadow-md cursor-default">
+          <span className="text-[#B59434] transition-colors duration-1000">{titleText}</span>
+          <span 
+            className={`absolute inset-0 text-gold-luxury transition-opacity duration-1000 pointer-events-none ${showGold ? 'opacity-100' : 'opacity-0'}`}
+            aria-hidden="true"
+          >
+            {titleText}
+          </span>
+        </h1>
+        
+        <p className="text-stone-500 tracking-[0.2em] uppercase text-xs md:text-sm font-medium relative inline-block group cursor-default mt-2">
           The Archive of Our Gatherings
-        </motion.p>
+          <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#B59434] transition-all duration-500 group-hover:w-full"></span>
+        </p>
       </header>
 
       <motion.div 

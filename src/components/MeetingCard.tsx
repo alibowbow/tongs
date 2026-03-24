@@ -20,9 +20,21 @@ export function MeetingCard({ meeting, index }: MeetingCardProps) {
     '연기': 'text-[#D97757] bg-[#D97757]/10 border-[#D97757]/20',
     '취소': 'text-rose-600 bg-rose-50 border-rose-200',
     '보류': 'text-stone-500 bg-stone-100 border-stone-200',
+    '예정': 'text-purple-600 bg-purple-50 border-purple-200',
   };
 
   const statusColor = statusColors[meeting.status] || 'text-stone-500 bg-stone-100 border-stone-200';
+
+  let dDayText = '';
+  if (meeting.status === '예정') {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const meetingDate = new Date(meeting.date);
+    meetingDate.setHours(0, 0, 0, 0);
+    const diffTime = meetingDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    dDayText = diffDays > 0 ? `D-${diffDays}` : diffDays === 0 ? 'D-Day' : `D+${Math.abs(diffDays)}`;
+  }
 
   return (
     <motion.div
@@ -39,7 +51,7 @@ export function MeetingCard({ meeting, index }: MeetingCardProps) {
       >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
               <span className="text-xs tracking-widest uppercase text-[#D97757] font-semibold">
                 {meeting.date.substring(0, 4)} {meeting.quarter}
               </span>
@@ -47,6 +59,16 @@ export function MeetingCard({ meeting, index }: MeetingCardProps) {
               <span className={`text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full border ${statusColor} font-medium`}>
                 {meeting.status || '미정'}
               </span>
+              {meeting.end_date && (
+                <span className="text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full border text-indigo-600 bg-indigo-50 border-indigo-200 font-medium">
+                  1박 2일
+                </span>
+              )}
+              {meeting.status === '예정' && dDayText && (
+                <span className="text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full border text-pink-600 bg-pink-50 border-pink-200 font-bold animate-pulse">
+                  {dDayText}
+                </span>
+              )}
             </div>
             
             <h3 className="font-serif text-2xl md:text-3xl font-medium text-stone-800 mb-2">
