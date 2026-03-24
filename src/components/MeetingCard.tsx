@@ -4,6 +4,7 @@ import { MapPin, ChevronDown, ChevronUp, Clock } from 'lucide-react';
 import { Meeting } from '../data/meetings';
 
 interface MeetingCardProps {
+  key?: string | number;
   meeting: Meeting;
   index: number;
 }
